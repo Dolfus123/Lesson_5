@@ -255,7 +255,8 @@ int main()
 	} while (fExit == 1);
 
 
-	//34
+	//English text
+	//Русский текст
 	
 	return 0;
 }
