@@ -11,7 +11,7 @@ using namespace std;
 class Pet
 {
 private:
-	static string owner;//поле не привязывается к каждому объекту и сущкствует отдельно от них в единственном экземпляре
+	static string owner;//поле не привязывается к каждому объекту и существует отдельно от них в единственном экземпляре
 	string name;
 	int age;
 public:
@@ -57,9 +57,9 @@ public:
 
 	virtual void info() = 0;
 	
-	friend bool cmpNameUp(Pet*, Pet*);//метод являетя другом клаасса , реализуется вне класса ,
-	//имеет доступ ко всем полям и методам(даже приват) для своего вызова не требует объекта.т.е. 
-	//вызывается как обычная функция. Нельзя использовать this в нем
+	friend bool cmpNameUp(Pet*, Pet*);//метод являетя другом клаасса, реализуется вне класса,
+	//имеет доступ ко всем полям и методам(даже private) для своего вызова не требует объекта т.е. 
+	//вызывается как обычная функция. Нельзя использовать this в нем.
 
 	virtual ~Pet() {
 		cout << "dictructor Pet" << endl;
@@ -171,23 +171,23 @@ int main()
 	do
 	{
 		cout << "1. Add" << endl;
-		cout << "2. Pereclichka" << endl;
-		cout << "3. Redactor" << endl;
-		cout << "4. delete" << endl;
+		cout << "2. Roll call" << endl;
+		cout << "3. Edit" << endl;
+		cout << "4. Delete" << endl;
 		cout << "5. Sort" << endl;
 		cout << "Enter number menu" << endl;
 		cin >> menu1;
 		switch (menu1)
 		{
 		case 1: {
-			cout << "Viberi vid animal" << endl;
+			cout << "Choose type animal" << endl;
 			cout << "1. Cat" << endl;
 			cout << "2. Dog" << endl;
 			cin >> menu2;
-			cout << "add name animal" << endl;
+			cout << "Add name animal" << endl;
 			while (cin.get() != '\n');
 			getline(cin, tmpName);
-			cout << "add age animal" << endl;
+			cout << "Add age animal" << endl;
 			cin >> tmpAge;
 			switch (menu2)
 			{
@@ -214,8 +214,8 @@ int main()
 
 		}break;
 		case 2: {
-			cout << "owner:"<<Pet::getOwner()<<endl;
-			cout << "Pereclichka" << endl;
+			cout << "Оwner:"<<Pet::getOwner()<<endl;
+			cout << "Roll call" << endl;
 			for (size_t i = 0; i < pets.size(); i++) {
 				cout << i + 1 << ") ";
 				pets[i]->info();
@@ -225,11 +225,11 @@ int main()
 		case 3: {}break;
 		case 4: {
 			int num;
-			cout << "enter name's del animal" << endl;
+			cout << "Enter name's removable animal" << endl;
 			cin >> num;
 			while (num<1||num>pets.size())
 			{
-				cout << "no-corect entering, please enter agen" << endl;
+				cout << "Incorrect input, please enter again" << endl;
 				cin >> num;
 			}
 			delete pets[num - 1];
@@ -241,8 +241,6 @@ int main()
 		case 5: {
 			sort(pets.begin(), pets.end(), cmpNameUp);
 		
-		
-		
 		}break;
 
 
@@ -253,10 +251,6 @@ int main()
 		system("cls");
 
 	} while (fExit == 1);
-
-
-	//English text
-	//Русский текст
 	
 	return 0;
 }
